@@ -29,6 +29,8 @@
 
   chrome.browserAction.onClicked.addListener(function () {
     console.debug('user activated injection');
+    //todo: have the option to manually trigger the injection
+    //chrome.browserAction.setIcon({path: 'iconActive.png'});
   });
 
 

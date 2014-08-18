@@ -17,6 +17,7 @@
         }
 
         item = this.inject;
+        item.enabled = true;
 
         persistenceService.get({items: []}, function (results) {
           var l = results.items.length, i;
