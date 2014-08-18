@@ -1,70 +1,68 @@
 /*jslint browser: true */
 /*jslint indent: 2 */
 
-(function (chrome) {
+(function (chrome, console) {
   'use strict';
 
-  var removeAssets = {
-    active  : false,
-    interval: false,
-    options : {
-      img  : true,
-      style: false,
-      link : false
-    }
+  var inject = {
+    items: []
   };
 
-  removeAssets.start = function () {
-    if (removeAssets.interval !== false) {
-      return;
-    }
+  inject.updateItemCollection = function (items) {
 
-    chrome.browserAction.setIcon({path: 'iconActive.png'});
-    removeAssets.interval = setInterval(function () {
-      removeAssets.disableAssets();
-    }, 500);
-    removeAssets.active = true;
-  };
+    var storageStatus = function () {
+      console.debug('storage loaded, items count: ', inject.items.length);
+    };
 
-  removeAssets.shutdown = function () {
-    clearInterval(removeAssets.interval);
-    chrome.browserAction.setIcon({path: 'icon.png'});
-    removeAssets.active = false;
-    removeAssets.interval = false;
-  };
-
-  removeAssets.isActive = function () {
-    return removeAssets.active;
-  };
-
-  removeAssets.disableAssets = function () {
-    if (removeAssets.active === true) {
-      chrome.tabs.executeScript({code: "var options = " + JSON.stringify(removeAssets.options) }, function () {
-        chrome.tabs.executeScript({ file: 'js/unload.js' });
+    if (!items) {
+      chrome.storage.sync.get({items: []}, function (results) {
+        inject.items = results.items;
+        storageStatus();
       });
 
+    } else {
+      inject.items = items;
+      storageStatus();
     }
-  };
 
-  removeAssets.readOptions = function () {
-    chrome.storage.sync.get({
-      img  : removeAssets.options.img,
-      style: removeAssets.options.style,
-      link : removeAssets.options.link
-    }, function (items) {
-      removeAssets.options = items;
-    });
   };
 
   chrome.browserAction.onClicked.addListener(function () {
-
-    if (removeAssets.isActive()) {
-      removeAssets.shutdown();
-    } else {
-      removeAssets.readOptions();
-      removeAssets.start();
-    }
-
+    console.debug('user activated injection');
   });
 
-}(chrome));
+
+  chrome.webNavigation.onCompleted.addListener(function (details) {
+
+    var l = inject.items.length, i, target_url, target_code;
+    for (i = 0; i < l; i++) {
+      target_url = inject.items[i].url.replace('/', '\\/');
+      target_code = inject.items[i].code;
+      if (details.url.match(target_url)) {
+        chrome.tabs.executeScript({code: target_code }, function () {
+          console.debug('code injected');
+        });
+      }
+    }
+  });
+
+  chrome.storage.onChanged.addListener(function (changes, namespace) {
+    var key,
+        storageChange;
+
+    for (key in changes) {
+      if (changes.hasOwnProperty(key)) {
+        if (key === "items") {
+          storageChange = changes[key];
+          console.debug("update detected, syncing...");
+          inject.updateItemCollection(storageChange.newValue);
+        }
+      }
+    }
+  });
+
+  inject.updateItemCollection();
+
+
+}(chrome, console));
+
