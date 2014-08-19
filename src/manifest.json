@@ -6,7 +6,7 @@
   "version"         : "1.0.0",
   "browser_action"  : {
     "default_icon" : "icon72.png",
-    "default_title": "Activate Js Inject rules - Click to toggle"
+    "default_title": "Activate Js Inject rules - Click to add a new rule"
   },
 
   "permissions"            : [

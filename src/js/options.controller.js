@@ -7,7 +7,13 @@
     '$scope',
     'persistenceService',
     'generateGuid',
-    function ($scope, persistenceService, generateGuid) {
+    '$http',
+    function ($scope, persistenceService, generateGuid, $http) {
+
+      $http({method: 'GET', url: '/manifest.json'}).success(function (data) {
+        $scope.manifest = data;
+      });
+
 
       $scope.save = function () {
         var item;

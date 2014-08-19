@@ -4,7 +4,7 @@ body {
     background-color: #efefef;
 }
 
-.main-container {
+table.regex-list  {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -14,15 +14,31 @@ body {
     -webkit-box-shadow: 0 1px 3px rgba(142, 142, 142, 0.3);
     box-shadow: 0 1px 3px rgba(142, 142, 142, 0.3);
     border: 1px solid #ccc;
-    padding: 10px 5px 5px 5px;
+}
 
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
+.regex-list th{
+    text-align: center;
 }
 
 
 .main-container h4 {
     text-align: center;
     margin-bottom: 35px;
+}
+
+form.search {
+    margin-left: 40px;
+}
+
+
+.actions .glyphicon-trash {
+    margin-left: 10px;
+}
+
+.actions {
+    text-align: center;
+}
+
+.actions .glyphicon {
+    cursor: pointer;
 }

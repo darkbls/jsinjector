@@ -12,19 +12,79 @@
 <div class="container">
     <div class="main-container" ng-controller="optionsController">
 
-        <h4>JavaScript Injector </h4>
+        <h4>{{manifest.name}} v{{ manifest.version }} </h4>
 
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal search" role="form">
+            <div class="form-group">
+                <label for="SearchText" class="col-sm-1 control-label">Search</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="search" id="SearchText" placeholder="Search URL">
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success btn-block" id="add">Add</button>
+                </div>
+
+            </div>
+        </form>
+
+        <table class="regex-list table table-striped ">
+            <tr class="info">
+                <th>url to inject</th>
+                <th>actions</th>
+                <th>status</th>
+            </tr>
+            <tr>
+                <td>https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript</td>
+                <td class="actions">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </td>
+                <td><button class="btn btn-xs btn-success btn-block">On</button></td>
+            </tr>
+
+            <tr>
+                <td>https://developer.chrome.com/extensions/storage</td>
+                <td class="actions">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </td>
+                <td><button class="btn btn-xs btn-success btn-block">On</button></td>
+            </tr>
+
+            <tr>
+                <td>https://stackoverflow.com/questions/16930473/angularjs-factory-http-get-json-file</td>
+                <td class="actions">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </td>
+                <td><button class="btn btn-xs btn-danger btn-block">Off</button></td>
+            </tr>
+
+            <tr>
+                <td>http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/</td>
+                <td class="actions">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </td>
+                <td><button class="btn btn-xs btn-danger btn-block">Off</button></td>
+            </tr>
+        </table>
+
+        <form style="display:none;" class="form-horizontal" role="form">
             <div class="form-group">
                 <label for="regEx" class="col-sm-2 control-label">Target URL</label>
+
                 <div class="col-sm-8">
                     <input type="text" ng-model="inject.url" class="form-control" id="regEx" placeholder="Target URL">
                 </div>
             </div>
             <div class="form-group">
                 <label for="js-snippet" class="col-sm-2 control-label">Javascript</label>
+
                 <div class="col-sm-8">
-                    <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet" placeholder="Javascript code"></textarea>
+                    <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet"
+                              placeholder="Javascript code"></textarea>
                 </div>
             </div>
             <div class="form-group">
