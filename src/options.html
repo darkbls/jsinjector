@@ -28,12 +28,45 @@
             </div>
         </form>
 
+        <div class="add-wrapper">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="regEx" class="col-sm-2 control-label">Target URL</label>
+
+                    <div class="col-sm-9">
+                        <input type="text" ng-model="inject.url" class="form-control" id="regEx"
+                               placeholder="Target URL">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="js-snippet" class="col-sm-2 control-label">Javascript</label>
+
+                    <div class="col-sm-9">
+                        <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet"
+                                  placeholder="Javascript code"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <button type="button" ng-click="save()" class="btn btn-info btn-block" id="save">Save</button>
+                    </div>
+                </div>
+
+                <div class="succcess-message form-group">
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <div class="alert alert-success" role="alert">Save successfully</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <table class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
                 <th>actions</th>
                 <th>status</th>
             </tr>
+
             <tr>
                 <td>https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript</td>
                 <td class="actions">
@@ -53,62 +86,7 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>https://developer.chrome.com/extensions/storage</td>
-                <td class="actions">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </td>
-                <td>
-                    <button class="btn btn-xs btn-success btn-block">On</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>https://stackoverflow.com/questions/16930473/angularjs-factory-http-get-json-file</td>
-                <td class="actions">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </td>
-                <td>
-                    <button class="btn btn-xs btn-danger btn-block">Off</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>http://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/</td>
-                <td class="actions">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="glyphicon glyphicon-trash"></span>
-                </td>
-                <td>
-                    <button class="btn btn-xs btn-danger btn-block">Off</button>
-                </td>
-            </tr>
         </table>
-
-        <form style="display:none;" class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="regEx" class="col-sm-2 control-label">Target URL</label>
-
-                <div class="col-sm-8">
-                    <input type="text" ng-model="inject.url" class="form-control" id="regEx" placeholder="Target URL">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="js-snippet" class="col-sm-2 control-label">Javascript</label>
-
-                <div class="col-sm-8">
-                    <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet"
-                              placeholder="Javascript code"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-8">
-                    <button type="button" ng-click="save()" class="btn btn-default btn-block" id="save">Save</button>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 

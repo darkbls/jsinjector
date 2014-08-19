@@ -4,7 +4,7 @@ body {
     background-color: #efefef;
 }
 
-table.regex-list  {
+table.regex-list {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -16,10 +16,29 @@ table.regex-list  {
     border: 1px solid #ccc;
 }
 
-.regex-list th{
+.add-wrapper {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background-color: white;
+    -webkit-box-shadow: 0 1px 3px rgba(142, 142, 142, 0.3);
+    box-shadow: 0 1px 3px rgba(142, 142, 142, 0.3);
+    border: 1px solid #ccc;
+
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.succcess-message {
+    margin-bottom: 0px;
     text-align: center;
 }
 
+.regex-list th {
+    text-align: center;
+}
 
 .main-container h4 {
     text-align: center;
@@ -29,7 +48,6 @@ table.regex-list  {
 form.search {
     margin-left: 40px;
 }
-
 
 .actions .glyphicon-trash {
     margin-left: 10px;
@@ -49,6 +67,6 @@ form.search {
 }
 
 .jscode button {
-   float: right;
+    float: right;
     margin-left: 10px;
 }
