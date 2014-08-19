@@ -22,13 +22,13 @@
                     <input type="text" class="form-control" ng-model="search" id="SearchText" placeholder="Search URL">
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-success btn-block" id="add">Add</button>
+                    <button type="button" class="btn btn-primary btn-block" id="add">Add</button>
                 </div>
 
             </div>
         </form>
 
-        <table class="regex-list table table-striped ">
+        <table class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
                 <th>actions</th>
@@ -40,7 +40,17 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-trash"></span>
                 </td>
-                <td><button class="btn btn-xs btn-success btn-block">On</button></td>
+                <td>
+                    <button class="btn btn-xs btn-success btn-block">On</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="jscode" colspan="3">
+                    <textarea class="form-control" rows="2"></textarea>
+
+                    <button class="btn btn-info btn-xs">Save</button>
+                    <button class="btn btn-default btn-xs">Cancel</button>
+                </td>
             </tr>
 
             <tr>
@@ -49,7 +59,9 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-trash"></span>
                 </td>
-                <td><button class="btn btn-xs btn-success btn-block">On</button></td>
+                <td>
+                    <button class="btn btn-xs btn-success btn-block">On</button>
+                </td>
             </tr>
 
             <tr>
@@ -58,7 +70,9 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-trash"></span>
                 </td>
-                <td><button class="btn btn-xs btn-danger btn-block">Off</button></td>
+                <td>
+                    <button class="btn btn-xs btn-danger btn-block">Off</button>
+                </td>
             </tr>
 
             <tr>
@@ -67,7 +81,9 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-trash"></span>
                 </td>
-                <td><button class="btn btn-xs btn-danger btn-block">Off</button></td>
+                <td>
+                    <button class="btn btn-xs btn-danger btn-block">Off</button>
+                </td>
             </tr>
         </table>
 

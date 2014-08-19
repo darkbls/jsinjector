@@ -42,3 +42,13 @@ form.search {
 .actions .glyphicon {
     cursor: pointer;
 }
+
+.jscode textarea {
+    resize: vertical;
+    margin-bottom: 5px;
+}
+
+.jscode button {
+   float: right;
+    margin-left: 10px;
+}
