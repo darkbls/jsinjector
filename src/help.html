@@ -1,38 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<!DOCTYPE html>
-<html ng-app="options">
-<head>
-    <title>Remove Assets Options</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/bootstrap-switch.min.css" rel="stylesheet">
-    <link href="css/options.css" rel="stylesheet">
-    <script src="js/angular.min.js"></script>
-    <style>
-        body {
-            
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="main-container" ng-controller="optionsController">
-
-        <h4>How can I add a big script or a linked script, like jQuery?</h4>
-        <p>
-            <a target="_blank"
-               href="https://stackoverflow.com/questions/950087/how-to-include-a-javascript-file-in-another-javascript-file">
-                You can always use javascript to load an external Javascript URL into your page.
-            </a>
-            <br>
-            You can copy paste the following code for a try:
+<div class="modal-header">
+    <h3 class="modal-title">Help</h3>
+</div>
+<div class="modal-body">
+    <h4>How can I add a big script or a linked script, like jQuery?</h4>
+    <p>
+        <a target="_blank"
+           href="https://stackoverflow.com/questions/950087/how-to-include-a-javascript-file-in-another-javascript-file">
+            You can always use javascript to load an external Javascript URL into your page.
+        </a>
+        <br>
+        You can copy paste the following code for a try:
         <pre>
 function loadScript(url, callback)
 {
@@ -53,17 +30,8 @@ head.appendChild(script);
 
 loadScript('https://code.jquery.com/jquery-1.11.1.min.js', function() {});
         </pre>
-        </p>
-    </div>
+    </p>
 </div>
-
-
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-switch.min.js"></script>
-<script src="js/app.angular.js"></script>
-<script src="js/options.controller.js"></script>
-</body>
-</html>
-</body>
-</html>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

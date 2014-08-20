@@ -10,7 +10,8 @@
     'manifest',
     '$location',
     '$timeout',
-    function ($scope, persistenceService, generateGuid, manifest, $location, $timeout) {
+    '$modal',
+    function ($scope, persistenceService, generateGuid, manifest, $location, $timeout, $modal) {
 
       $scope.showForm = false;
       $scope.edit = {};
@@ -49,6 +50,15 @@
         });
       };
 
+      $scope.help = function (size) {
+        var modalInstance = $modal.open({
+          templateUrl: 'help.html',
+          controller: ModalInstanceCtrl,
+          size: size
+        });
+
+      };
+
       function listItems() {
         /**
          * var itemStructure = {
@@ -72,5 +82,12 @@
     }
   ])
   ;
+
+  var ModalInstanceCtrl = function ($scope, $modalInstance) {
+    $scope.ok = function () {
+      $modalInstance.close();
+    };
+  };
+
 
 }(angular));

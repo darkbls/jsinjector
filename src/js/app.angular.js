@@ -1,7 +1,7 @@
 (function (chrome, $) {
   'use strict';
 
-  angular.module('options', [])
+  angular.module('options', ['ui.bootstrap'])
 
     .factory('duplicateTagTooltip', function () {
       return {
