@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" ng-model="search" id="SearchText" placeholder="Search URL">
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary btn-block" id="add">Add</button>
+                    <button ng-click="showForm()" type="button" class="btn btn-primary btn-block" id="add">Add</button>
                 </div>
 
             </div>
@@ -47,19 +47,22 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-9">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <button type="button" ng-click="hideForm()" class="btn btn-default btn-block" id="cancel">Cancel</button>
+                    </div>
+                    <div class="col-sm-5">
                         <button type="button" ng-click="save()" class="btn btn-info btn-block" id="save">Save</button>
                     </div>
                 </div>
 
-                <div class="succcess-message form-group">
+                <div ng-show="false" class="succcess-message form-group">
                     <div class="col-sm-offset-2 col-sm-9">
                         <div class="alert alert-success" role="alert">Save successfully</div>
                     </div>
                 </div>
             </form>
         </div>
-
+<!--
         <table class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
@@ -86,7 +89,7 @@
                 </td>
             </tr>
 
-        </table>
+        </table>-->
     </div>
 </div>
 

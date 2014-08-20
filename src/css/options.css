@@ -70,3 +70,7 @@ form.search {
     float: right;
     margin-left: 10px;
 }
+
+.add-wrapper{
+    display:none;
+}

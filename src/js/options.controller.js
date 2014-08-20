@@ -8,7 +8,11 @@
     'persistenceService',
     'generateGuid',
     'manifest',
-    function ($scope, persistenceService, generateGuid, manifest) {
+    'addItemForm',
+    function ($scope, persistenceService, generateGuid, manifest, addItemForm) {
+
+      $scope.showForm = addItemForm.show;
+      $scope.hideForm = addItemForm.hide;
 
       manifest(function (data) {
         $scope.manifest = data;
@@ -22,7 +26,7 @@
         }
       };
 
-      $scope.delete = function (item) {
+      $scope.remove = function (item) {
         persistenceService.delete(item.guid);
         listItems();
       };
