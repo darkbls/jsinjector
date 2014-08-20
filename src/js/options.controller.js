@@ -53,10 +53,9 @@
       $scope.help = function (size) {
         var modalInstance = $modal.open({
           templateUrl: 'help.html',
-          controller: ModalInstanceCtrl,
+          controller: 'helpController',
           size: size
         });
-
       };
 
       function listItems() {
