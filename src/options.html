@@ -41,48 +41,41 @@
             </div>
         </div>
 
-
         <div class="add-wrapper">
-            <form class="form-horizontal" role="form">
+            <table class="regex-list table table-bordered">
+                <tr class="info">
+                    <th>url to inject</th>
+                    <th>status</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control" ng-model="inject.url"
+                               placeholder="Target URL" ng-model="item.url" value="item.url">
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-block btn-success disabled">On by default</button>
+                    </td>
 
-                <div class="form-group">
-                    <label for="regEx" class="col-sm-2 control-label">Target URL</label>
-
-                    <div class="col-sm-9">
-                        <input type="text" ng-model="inject.url" class="form-control" id="regEx"
-                               placeholder="Target URL">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="js-snippet" class="col-sm-2 control-label">Javascript <br>
+                </tr>
+                <tr>
+                    <td class="jscode" colspan="3">
                         <a target="_blank"
                            href="https://developer.chrome.com/extensions/storage#property-sync-QUOTA_BYTES_PER_ITEM">
-                            (max 4,096 bytes)
+                            Javascript code max 4,096 bytes
                         </a>
-                    </label>
-
-                    <div class="col-sm-9">
-                        <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet"
-                                  placeholder="Javascript code"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-4">
-                        <button type="button" ng-click="hideForm()" class="btn btn-default btn-block" id="cancel">
-                            Cancel
-                        </button>
-                    </div>
-                    <div class="col-sm-5">
-                        <button type="button" ng-click="save(inject)" class="btn btn-info btn-block" id="save">Save
-                        </button>
-                    </div>
-                </div>
-            </form>
+                        <textarea ng-model="inject.code" placeholder="Javascript code"
+                                  class="form-control" rows="8"></textarea>
+                        <button ng-click="save(inject)" class="btn btn-info btn-xs">Save</button>
+                        <button ng-click="hideForm()" class="btn btn-default btn-xs">Cancel</button>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div ng-show="items.length == 0">
             <h4>No urls added yet! Try it out and add your first url</h4>
         </div>
+
         <table ng-show="items.length > 0" ng-cloak class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
@@ -90,14 +83,15 @@
                 <th>status</th>
             </tr>
 
+
             <tr ng-repeat-start="item in items | filter: {url: search}">
-                <td>
+                <td class="col-sm-8">
                     <span ng-show="!edit[item.guid]">{{ item.url }}</span>
                     <span ng-show="edit[item.guid]">
                         <input class="form-control" placeholder="Target URL" ng-model="item.url" value="item.url">
                     </span>
                 </td>
-                <td class="actions">
+                <td class="col-sm-2 actions">
                     <span ng-click="edit[item.guid] = !edit[item.guid] " class="glyphicon glyphicon-pencil"></span>
                     <span ng-click="remove(item)" class="glyphicon glyphicon-trash"></span>
                 </td>
