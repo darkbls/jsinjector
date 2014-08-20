@@ -64,7 +64,10 @@
             </form>
         </div>
 
-        <table ng-cloak class="regex-list table table-hover">
+        <div ng-show="items.length == 0">
+           <h4>No urls added yet! Try it out and add your first url</h4>
+        </div>
+        <table ng-show="items.length > 0" ng-cloak class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
                 <th>actions</th>

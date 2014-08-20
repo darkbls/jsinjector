@@ -9,7 +9,8 @@
     'generateGuid',
     'manifest',
     'addItemForm',
-    function ($scope, persistenceService, generateGuid, manifest, addItemForm) {
+    '$location',
+    function ($scope, persistenceService, generateGuid, manifest, addItemForm, $location) {
 
       $scope.showForm = addItemForm.show;
       $scope.hideForm = addItemForm.hide;
@@ -60,6 +61,9 @@
       }
 
       listItems();
+      if ($location.path() == '/add') {
+        $scope.showForm();
+      }
 
     }
   ])
