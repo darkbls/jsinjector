@@ -3,7 +3,7 @@
   "name"            : "JavaScript Injector",
   "short_name"      : "Js Injector",
   "description"     : "Inject javascript in a given website. ",
-  "version"         : "1.0.1",
+  "version"         : "1.0.2",
   "browser_action"  : {
     "default_icon" : "icon72.png",
     "default_title": "Activate Js Inject rules - Click to add a new rule"
