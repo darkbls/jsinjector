@@ -10,7 +10,8 @@
     'manifest',
     'addItemForm',
     '$location',
-    function ($scope, persistenceService, generateGuid, manifest, addItemForm, $location) {
+    '$timeout',
+    function ($scope, persistenceService, generateGuid, manifest, addItemForm, $location, $timeout) {
 
       $scope.showForm = addItemForm.show;
       $scope.hideForm = addItemForm.hide;
@@ -30,11 +31,16 @@
           persistenceService.save(item, function () {
             console.log('controller success callback');
 
+            $scope.savedSuccessfully = true;
+
             if (item == $scope.inject) {
               $scope.inject = {};
             }
             addItemForm.hide();
             listItems();
+            $timeout(function(){
+              $scope.savedSuccessfully = false;
+            }, 1500);
           });
         }
       };

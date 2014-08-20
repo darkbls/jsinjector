@@ -1,7 +1,7 @@
 
 body {
     padding-top: 30px;
-    background-color: #efefef;
+    background-color: #fbfbfb;
 }
 
 table.regex-list {
@@ -76,7 +76,6 @@ form.search {
     display:none;
 }
 
-.help-link {
-    display: inline-block;
-    padding: 6px 12px;
+.search-items {
+    margin-bottom: 25px;
 }

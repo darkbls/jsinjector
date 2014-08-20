@@ -15,30 +15,35 @@
 
         <h4>{{manifest.name}} v{{ manifest.version }} </h4>
 
-        <form class="form-horizontal search" role="form">
-
-            <div class="form-group">
-                <label for="SearchText" class="col-sm-1 control-label">Search</label>
-
-                <div class="col-sm-8">
+        <div class="row search-items">
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <div class="input-group-addon">Search URL</div>
                     <input type="text" class="form-control" ng-model="search" id="SearchText" placeholder="Search URL">
                 </div>
-                <div class="col-sm-2">
-                    <button ng-click="showForm()" type="button" class="btn btn-primary btn-block" id="add">Add</button>
-                </div>
-
             </div>
-        </form>
+
+            <div class="col-sm-2">
+                <button ng-click="showForm()" type="button" class="btn btn-primary btn-block" id="add">Add</button>
+            </div>
+
+            <div class="col-sm-1">
+                <a href="help.html" type="button" class="btn btn-warning btn-block">Help</a>
+            </div>
+        </div>
+
+
+        <div ng-show="savedSuccessfully" class="succcess-message">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-success" role="alert">Saved successfully</div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="add-wrapper">
             <form class="form-horizontal" role="form">
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Help</label>
-                    <div class=" col-sm-8">
-                        <a class="help-link" href="help.html">How can I add a big script or a linked script, like jQuery?</a>
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label for="regEx" class="col-sm-2 control-label">Target URL</label>
@@ -72,12 +77,6 @@
                         </button>
                     </div>
                 </div>
-
-                <div ng-show="false" class="succcess-message form-group">
-                    <div class="col-sm-offset-2 col-sm-9">
-                        <div class="alert alert-success" role="alert">Save successfully</div>
-                    </div>
-                </div>
             </form>
         </div>
 
@@ -92,7 +91,12 @@
             </tr>
 
             <tr ng-repeat-start="item in items | filter: {url: search}">
-                <td>{{ item.url }}</td>
+                <td>
+                    <span ng-show="!edit[item.guid]">{{ item.url }}</span>
+                    <span ng-show="edit[item.guid]">
+                        <input class="form-control" placeholder="Target URL" ng-model="item.url" value="item.url">
+                    </span>
+                </td>
                 <td class="actions">
                     <span ng-click="edit[item.guid] = !edit[item.guid] " class="glyphicon glyphicon-pencil"></span>
                     <span ng-click="remove(item)" class="glyphicon glyphicon-trash"></span>
