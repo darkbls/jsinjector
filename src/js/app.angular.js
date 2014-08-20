@@ -110,17 +110,6 @@
         };
       }())
     })
-
-    .factory('addItemForm', function () {
-      return {
-        show: function () {
-          $('.add-wrapper').slideDown();
-        },
-        hide: function () {
-          $('.add-wrapper').slideUp();
-        }
-      };
-    })
   ;
 
 

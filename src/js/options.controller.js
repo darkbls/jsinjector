@@ -8,13 +8,11 @@
     'persistenceService',
     'generateGuid',
     'manifest',
-    'addItemForm',
     '$location',
     '$timeout',
-    function ($scope, persistenceService, generateGuid, manifest, addItemForm, $location, $timeout) {
+    function ($scope, persistenceService, generateGuid, manifest, $location, $timeout) {
 
-      $scope.showForm = addItemForm.show;
-      $scope.hideForm = addItemForm.hide;
+      $scope.showForm = false;
       $scope.edit = {};
 
       manifest(function (data) {
@@ -36,7 +34,7 @@
             if (item == $scope.inject) {
               $scope.inject = {};
             }
-            addItemForm.hide();
+            $scope.showForm = false;
             listItems();
             $timeout(function(){
               $scope.savedSuccessfully = false;
@@ -68,7 +66,7 @@
 
       listItems();
       if ($location.path() == '/add') {
-        $scope.showForm();
+        $scope.showForm = true;
       }
 
     }

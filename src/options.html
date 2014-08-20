@@ -18,13 +18,13 @@
         <div class="row search-items">
             <div class="col-sm-9">
                 <div class="input-group">
-                    <div class="input-group-addon">Search URL</div>
+                    <div class="input-group-addon">Search URL List</div>
                     <input type="text" class="form-control" ng-model="search" id="SearchText" placeholder="Search URL">
                 </div>
             </div>
 
             <div class="col-sm-2">
-                <button ng-click="showForm()" type="button" class="btn btn-primary btn-block" id="add">Add</button>
+                <button ng-click="showForm = true" type="button" class="btn btn-primary btn-block" id="add">Add</button>
             </div>
 
             <div class="col-sm-1">
@@ -33,57 +33,45 @@
         </div>
 
 
-        <div ng-show="savedSuccessfully" class="succcess-message">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="alert alert-success" role="alert">Saved successfully</div>
-                </div>
-            </div>
+        <div ng-class="{show: savedSuccessfully}" class="succcess-message invisible">
+            <div class="alert alert-success" role="alert">Saved successfully</div>
         </div>
 
-        <div class="add-wrapper">
-            <table class="regex-list table table-bordered">
-                <tr class="info">
-                    <th>url to inject</th>
-                    <th>status</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="form-control" ng-model="inject.url"
-                               placeholder="Target URL" ng-model="item.url" value="item.url">
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-block btn-success disabled">On by default</button>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="jscode" colspan="3">
-                        <a target="_blank"
-                           href="https://developer.chrome.com/extensions/storage#property-sync-QUOTA_BYTES_PER_ITEM">
-                            Javascript code max 4,096 bytes
-                        </a>
-                        <textarea ng-model="inject.code" placeholder="Javascript code"
-                                  class="form-control" rows="8"></textarea>
-                        <button ng-click="save(inject)" class="btn btn-info btn-xs">Save</button>
-                        <button ng-click="hideForm()" class="btn btn-default btn-xs">Cancel</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div ng-show="items.length == 0">
+        <div ng-show="items.length == 0 && showForm == false">
             <h4>No urls added yet! Try it out and add your first url</h4>
         </div>
 
-        <table ng-show="items.length > 0" ng-cloak class="regex-list table table-hover">
+        <table ng-show="items.length > 0 || showForm" ng-cloak class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
                 <th>actions</th>
                 <th>status</th>
             </tr>
+            <!-- add item form-->
+            <tr ng-show="showForm">
+                <td>
+                    <input class="input-sm form-control" ng-model="inject.url"
+                           placeholder="Target URL" ng-model="item.url" value="item.url">
+                </td>
+                <td class="col-sm-2 actions">n/a</td>
+                <td>
+                    <button class="btn btn-sm btn-block btn-success disabled">On by default</button>
+                </td>
 
-
+            </tr>
+            <tr ng-show="showForm">
+                <td class="jscode" colspan="3">
+                    <a target="_blank"
+                       href="https://developer.chrome.com/extensions/storage#property-sync-QUOTA_BYTES_PER_ITEM">
+                        Javascript code max 4,096 bytes
+                    </a>
+                    <textarea ng-model="inject.code" placeholder="Javascript code"
+                              class="form-control" rows="8"></textarea>
+                    <button ng-click="save(inject)" class="btn btn-info btn-xs">Save</button>
+                    <button ng-click="showForm = false" class="btn btn-default btn-xs">Cancel</button>
+                </td>
+            </tr>
+            <!--/add item form-->
             <tr ng-repeat-start="item in items | filter: {url: search}">
                 <td class="col-sm-8">
                     <span ng-show="!edit[item.guid]">{{ item.url }}</span>

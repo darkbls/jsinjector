@@ -35,7 +35,14 @@ table.regex-list {
     margin-bottom: 0px;
     text-align: center;
 }
+.succcess-message .alert {
+    margin-bottom: 10px;
+    padding: 10px;
+}
 
+.show {
+    visibility: visible;
+}
 .regex-list th {
     text-align: center;
 }
@@ -77,5 +84,14 @@ form.search {
 }
 
 .search-items {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
+
+.glyphicon-trash:hover {
+    color: red;
+}
+
+.glyphicon-pencil:hover {
+    color: green;
+}
+
