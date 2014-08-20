@@ -1,4 +1,4 @@
-(function () {
+(function (angular) {
   'use strict';
 
   var app = angular.module('options');
@@ -13,30 +13,49 @@
 
       $scope.showForm = addItemForm.show;
       $scope.hideForm = addItemForm.hide;
+      $scope.edit = {};
 
       manifest(function (data) {
         $scope.manifest = data;
       });
 
-      $scope.save = function () {
-        if (this.inject) {
-          persistenceService.save(this.inject, function (){
+      $scope.save = function (item) {
+
+        if (item["$$hashKey"]) {
+          item = angular.fromJson(angular.toJson(item));
+        }
+
+        if (item) {
+          persistenceService.save(item, function () {
             console.log('controller success callback');
+
+            if (item == $scope.inject) {
+              $scope.inject = {};
+            }
+            addItemForm.hide();
+            listItems();
           });
         }
       };
 
       $scope.remove = function (item) {
-        persistenceService.delete(item.guid);
-        listItems();
+        persistenceService.remove(item.guid, function () {
+          listItems();
+        });
       };
 
-       function listItems() {
+      function listItems() {
+        /**
+         * var itemStructure = {
+           code: '',
+           url: '',
+           guid: '',
+           enabled: ''
+         };
+         */
         persistenceService.get({items: []}, function (results) {
-          if (results.items.length > 0) {
-            $scope.items = results.items;
-            $scope.$apply();
-          }
+          $scope.items = results.items;
+          $scope.$apply();
         });
       }
 
@@ -46,4 +65,4 @@
   ])
   ;
 
-}());
+}(angular));

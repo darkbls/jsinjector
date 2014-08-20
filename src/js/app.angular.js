@@ -57,7 +57,9 @@
       persistence.save = function (item, successCallback) {
         persistence.get({items: []}, function (results) {
 
-          item.enabled = true;
+          if (typeof item.enabled === "undefined") {
+            item.enabled = true;
+          }
 
           if (!item.guid) {
             item.guid = generateGuid();
@@ -73,11 +75,12 @@
         });
       };
 
-      persistence.remove = function (guid) {
+      persistence.remove = function (guid, successCallback) {
         persistence.get({items: []}, function (results) {
           results.items = persistence.filterItemOutByGuid(results.items, guid);
           persistence.set(results, function () {
-            console.debug('saved successfully');
+            console.debug('removed successfully');
+            successCallback ? successCallback(): null;
           });
         });
       };

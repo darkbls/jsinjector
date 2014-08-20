@@ -64,6 +64,7 @@ form.search {
 .jscode textarea {
     resize: vertical;
     margin-bottom: 5px;
+    font-size: 12px;
 }
 
 .jscode button {

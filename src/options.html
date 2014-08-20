@@ -6,6 +6,7 @@
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="css/options.css" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
 </head>
 <body>
 
@@ -51,7 +52,7 @@
                         <button type="button" ng-click="hideForm()" class="btn btn-default btn-block" id="cancel">Cancel</button>
                     </div>
                     <div class="col-sm-5">
-                        <button type="button" ng-click="save()" class="btn btn-info btn-block" id="save">Save</button>
+                        <button type="button" ng-click="save(inject)" class="btn btn-info btn-block" id="save">Save</button>
                     </div>
                 </div>
 
@@ -62,38 +63,42 @@
                 </div>
             </form>
         </div>
-<!--
-        <table class="regex-list table table-hover">
+
+        <table ng-cloak class="regex-list table table-hover">
             <tr class="info">
                 <th>url to inject</th>
                 <th>actions</th>
                 <th>status</th>
             </tr>
 
-            <tr>
-                <td>https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript</td>
+            <tr ng-repeat-start="item in items | filter: {url: search}">
+                <td>{{ item.url }}</td>
                 <td class="actions">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <span ng-click="edit[item.guid] = !edit[item.guid] " class="glyphicon glyphicon-pencil"></span>
+                    <span ng-click="remove(item)" class="glyphicon glyphicon-trash"></span>
                 </td>
                 <td>
-                    <button class="btn btn-xs btn-success btn-block">On</button>
+                    <button class="btn btn-xs btn-block"
+                            ng-click="item.enabled = !item.enabled; save(item); "
+                            ng-class="{'btn-success': item.enabled , 'btn-danger':!item.enabled}"
+                            >
+                        <span ng-show="item.enabled">On</span>
+                        <span ng-show="!item.enabled">Off</span>
+                    </button>
                 </td>
             </tr>
-            <tr>
+            <tr ng-show="edit[item.guid]" ng-repeat-end>
                 <td class="jscode" colspan="3">
-                    <textarea class="form-control" rows="2"></textarea>
-
-                    <button class="btn btn-info btn-xs">Save</button>
-                    <button class="btn btn-default btn-xs">Cancel</button>
+                    <textarea ng-model="item.code" class="form-control" rows="8">{{ item.code }}</textarea>
+                    <button ng-click=" save(item); edit[item.guid] = false" class="btn btn-info btn-xs">Save</button>
+                    <button ng-click="edit[item.guid] = false" class="btn btn-default btn-xs">Cancel</button>
                 </td>
             </tr>
-
-        </table>-->
+        </table>
     </div>
 </div>
 
-<script src="js/angular.min.js"></script>
+
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-switch.min.js"></script>
