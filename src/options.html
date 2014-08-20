@@ -16,6 +16,7 @@
         <h4>{{manifest.name}} v{{ manifest.version }} </h4>
 
         <form class="form-horizontal search" role="form">
+
             <div class="form-group">
                 <label for="SearchText" class="col-sm-1 control-label">Search</label>
 
@@ -31,6 +32,14 @@
 
         <div class="add-wrapper">
             <form class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Help</label>
+                    <div class=" col-sm-8">
+                        <a class="help-link" href="help.html">How can I add a big script or a linked script, like jQuery?</a>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="regEx" class="col-sm-2 control-label">Target URL</label>
 
@@ -40,7 +49,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="js-snippet" class="col-sm-2 control-label">Javascript</label>
+                    <label for="js-snippet" class="col-sm-2 control-label">Javascript <br>
+                        <a target="_blank"
+                           href="https://developer.chrome.com/extensions/storage#property-sync-QUOTA_BYTES_PER_ITEM">
+                            (max 4,096 bytes)
+                        </a>
+                    </label>
 
                     <div class="col-sm-9">
                         <textarea rows="6" ng-model="inject.code" class="form-control" id="js-snippet"
@@ -49,10 +63,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-4">
-                        <button type="button" ng-click="hideForm()" class="btn btn-default btn-block" id="cancel">Cancel</button>
+                        <button type="button" ng-click="hideForm()" class="btn btn-default btn-block" id="cancel">
+                            Cancel
+                        </button>
                     </div>
                     <div class="col-sm-5">
-                        <button type="button" ng-click="save(inject)" class="btn btn-info btn-block" id="save">Save</button>
+                        <button type="button" ng-click="save(inject)" class="btn btn-info btn-block" id="save">Save
+                        </button>
                     </div>
                 </div>
 
@@ -65,7 +82,7 @@
         </div>
 
         <div ng-show="items.length == 0">
-           <h4>No urls added yet! Try it out and add your first url</h4>
+            <h4>No urls added yet! Try it out and add your first url</h4>
         </div>
         <table ng-show="items.length > 0" ng-cloak class="regex-list table table-hover">
             <tr class="info">

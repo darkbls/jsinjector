@@ -28,8 +28,18 @@
   };
 
   chrome.browserAction.onClicked.addListener(function () {
-    console.debug('user activated injection');
-    chrome.tabs.create({url: "options.html#add"}, function (tab) {});
+    console.debug('user clicked');
+
+    var optionsUrl = chrome.extension.getURL('options.html');
+    chrome.tabs.query({url: optionsUrl}, function (tabs) {
+      console.log(tabs);
+      if (tabs.length) {
+        chrome.tabs.update(tabs[0].id, {active: true});
+      } else {
+        chrome.tabs.create({url: optionsUrl + "#add"});
+      }
+    });
+
   });
 
 
@@ -37,6 +47,11 @@
 
     var l = inject.items.length, i, target_url, target_code;
     for (i = 0; i < l; i++) {
+
+      if (!inject.items[i].enabled) {
+        continue;
+      }
+
       target_url = inject.items[i].url.replace('/', '\\/');
       target_code = inject.items[i].code;
       if (details.url.match(target_url)) {
@@ -64,6 +79,9 @@
 
   inject.updateItemCollection();
 
+  chrome.runtime.onInstalled.addListener(function (object) {
+    chrome.tabs.create({url: "options.html"}, function (tab) {});
+  });
 
 }(chrome, console));
 
