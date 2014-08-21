@@ -1,7 +1,9 @@
 # Js Injector
 
-This chrome extension has the purpose off injecting Javascript into a target URL everytime that page loads.
+This chrome extension has the purpose of injecting Javascript into a target URL every time that page loads.
 
+You can inject your favourite script to extend the page functionality.
+ 
 
 ## Features
 
@@ -13,7 +15,7 @@ This chrome extension has the purpose off injecting Javascript into a target URL
 
 ## Install - Chrome Web Store
 
-
+https://chrome.google.com/webstore/detail/javascript-injector/knmnopfmccchnnfdoiddbihbcboeedll
 
 
 ## Extension UI 
