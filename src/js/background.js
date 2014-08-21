@@ -80,8 +80,8 @@
   inject.updateItemCollection();
 
   chrome.runtime.onInstalled.addListener(function (object) {
-    chrome.tabs.create({url: "options.html"}, function (tab) {});
+    chrome.tabs.create({url: "options.html"}, function (tab) {
+    });
   });
 
 }(chrome, console));
-
