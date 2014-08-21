@@ -6,12 +6,21 @@
   app.controller('optionsController', [
     '$scope',
     'persistenceService',
-    'generateGuid',
     'manifest',
     '$location',
     '$timeout',
     '$modal',
-    function ($scope, persistenceService, generateGuid, manifest, $location, $timeout, $modal) {
+    function ($scope, persistenceService, manifest, $location, $timeout, $modal) {
+
+      function listItems() {
+        /**
+         * var itemStructure = { code: '',  url: '',  guid: '', enabled: ''};
+         */
+        persistenceService.get({items: []}, function (results) {
+          $scope.items = results.items;
+          $scope.$apply();
+        });
+      }
 
       $scope.showForm = false;
       $scope.edit = {};
@@ -22,7 +31,7 @@
 
       $scope.save = function (item) {
 
-        if (item["$$hashKey"]) {
+        if (item.$$hashKey) {
           item = angular.fromJson(angular.toJson(item));
         }
 
@@ -32,12 +41,12 @@
 
             $scope.savedSuccessfully = true;
 
-            if (item == $scope.inject) {
+            if (item === $scope.inject) {
               $scope.inject = {};
             }
             $scope.showForm = false;
             listItems();
-            $timeout(function(){
+            $timeout(function () {
               $scope.savedSuccessfully = false;
             }, 1500);
           });
@@ -51,42 +60,20 @@
       };
 
       $scope.help = function (size) {
-        var modalInstance = $modal.open({
+        $modal.open({
           templateUrl: 'help.html',
-          controller: 'helpController',
-          size: size
+          controller : 'helpController',
+          size       : size
         });
       };
 
-      function listItems() {
-        /**
-         * var itemStructure = {
-           code: '',
-           url: '',
-           guid: '',
-           enabled: ''
-         };
-         */
-        persistenceService.get({items: []}, function (results) {
-          $scope.items = results.items;
-          $scope.$apply();
-        });
-      }
 
       listItems();
-      if ($location.path() == '/add') {
+      if ($location.path() === '/add') {
         $scope.showForm = true;
       }
 
     }
-  ])
-  ;
-
-  var ModalInstanceCtrl = function ($scope, $modalInstance) {
-    $scope.ok = function () {
-      $modalInstance.close();
-    };
-  };
-
+  ]);
 
 }(angular));

@@ -11,7 +11,6 @@
         $modalInstance.close();
       };
     }
-  ])
-  ;
+  ]);
 
 }(angular));

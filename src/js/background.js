@@ -46,25 +46,21 @@
   chrome.webNavigation.onCompleted.addListener(function (details) {
 
     var l = inject.items.length, i, target_url, target_code;
-    for (i = 0; i < l; i++) {
-
-      if (!inject.items[i].enabled) {
-        continue;
-      }
-
-      target_url = inject.items[i].url.replace('/', '\\/');
-      target_code = inject.items[i].code;
-      if (details.url.match(target_url)) {
-        chrome.tabs.executeScript({code: target_code }, function () {
-          console.debug('code injected');
-        });
+    for (i = 0; i < l; i += 1) {
+      if (inject.items[i].enabled) {
+        target_url = inject.items[i].url.replace('/', '\\/');
+        target_code = inject.items[i].code;
+        if (details.url.match(target_url)) {
+          chrome.tabs.executeScript({code: target_code }, function () {
+            console.debug('code injected');
+          });
+        }
       }
     }
   });
 
-  chrome.storage.onChanged.addListener(function (changes, namespace) {
-    var key,
-        storageChange;
+  chrome.storage.onChanged.addListener(function (changes) {
+    var key, storageChange;
 
     for (key in changes) {
       if (changes.hasOwnProperty(key)) {
@@ -79,9 +75,8 @@
 
   inject.updateItemCollection();
 
-  chrome.runtime.onInstalled.addListener(function (object) {
-    chrome.tabs.create({url: "options.html"}, function (tab) {
-    });
+  chrome.runtime.onInstalled.addListener(function () {
+    chrome.tabs.create({url: "options.html"});
   });
 
 }(chrome, console));

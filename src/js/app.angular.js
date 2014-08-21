@@ -6,10 +6,10 @@
     .factory('duplicateTagTooltip', function () {
       return {
         show: function () {
-          $('.bs-tooltip').tooltip('show')
+          $('.bs-tooltip').tooltip('show');
         },
         hide: function () {
-          $('.bs-tooltip').tooltip('hide')
+          $('.bs-tooltip').tooltip('hide');
         }
       };
     })
@@ -19,7 +19,7 @@
 
       persistence.set = function (items, callback) {
         chrome.storage.sync.set(items, function () {
-          callback()
+          callback();
         });
       };
 
@@ -32,7 +32,7 @@
       persistence.findAndReplace = function (items, item) {
         var l = items.length, i;
 
-        for (i = 0; i < l; i++) {
+        for (i = 0; i < l; i += 1) {
           if (items[i].guid === item.guid) {
             items[i] = item;
             return true;
@@ -44,12 +44,10 @@
       persistence.filterItemOutByGuid = function (items, guid) {
         var l = items.length, i, results = [];
 
-        for (i = 0; i < l; i++) {
-          if (items[i].guid === guid) {
-            continue;
+        for (i = 0; i < l; i += 1) {
+          if (items[i].guid !== guid) {
+            results.push(items[i]);
           }
-
-          results.push(items[i]);
         }
         return results;
       };
@@ -57,7 +55,7 @@
       persistence.save = function (item, successCallback) {
         persistence.get({items: []}, function (results) {
 
-          if (typeof item.enabled === "undefined") {
+          if (item.enabled === "undefined") {
             item.enabled = true;
           }
 
@@ -70,7 +68,9 @@
 
           persistence.set(results, function () {
             console.debug('saved successfully');
-            successCallback ? successCallback() : null;
+            if (successCallback !== "undefined") {
+              successCallback();
+            }
           });
         });
       };
@@ -80,7 +80,9 @@
           results.items = persistence.filterItemOutByGuid(results.items, guid);
           persistence.set(results, function () {
             console.debug('removed successfully');
-            successCallback ? successCallback(): null;
+            if (successCallback !== "undefined") {
+              successCallback();
+            }
           });
         });
       };
@@ -89,11 +91,11 @@
     })
 
     .factory('manifest', function ($http) {
-      return (function (callback) {
+      return function (callback) {
         $http({method: 'GET', url: '/manifest.json'}).success(function (data) {
           callback(data);
         });
-      });
+      };
     })
 
     .factory('generateGuid', function () {
@@ -108,10 +110,8 @@
           return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
         };
-      }())
-    })
-  ;
-
+      }());
+    });
 
 }(chrome, jQuery));
 
