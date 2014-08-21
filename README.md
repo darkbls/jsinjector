@@ -16,9 +16,11 @@ This chrome extension has the purpose off injecting Javascript into a target URL
 
 
 
-## Extension Options 
+## Extension UI 
 
-![alt text](https://raw.githubusercontent.com/darkbls/jsinject/master/OptionsPage.png "Js Inject UI")
+<img width="400" src="https://raw.githubusercontent.com/darkbls/jsinjector/master/screenshots/Selection_004.png" alt="Js Inject UI">
+
+<img width="400" src="https://raw.githubusercontent.com/darkbls/jsinjector/master/screenshots/Selection_002.png" alt="Js Inject UI">
 
 
 ## License
