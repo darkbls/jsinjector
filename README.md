@@ -1,26 +1,24 @@
-# Remove Assets 
+# Js Injector
 
-Chrome extension that actively attempts to remove images and/or styles from your current tab, until turned off.
+This chrome extension has the purpose off injecting Javascript into a target URL everytime that page loads.
 
 
 ## Features
-Click to toggle 
 
-Actively remove from your current tab:
-
-- Images
-- Inline styles
-- Stylesheets
+- Add urls with or without regular expressions
+- Keep a list of your urls and edit your js code inline
+- You can turn on/off the js code when you wish
+- Search trough your URLs
 
 
 ## Install - Chrome Web Store
 
-[https://chrome.google.com/webstore/detail/remove-assets/lnaimaoofnimhbfiaonkeibgfpolhong](https://chrome.google.com/webstore/detail/remove-assets/lnaimaoofnimhbfiaonkeibgfpolhong)
+
 
 
 ## Extension Options 
 
-![alt text](https://raw.githubusercontent.com/darkbls/removeimages/master/Options.html.png "Options Page")
+![alt text](https://raw.githubusercontent.com/darkbls/jsinject/master/OptionsPage.png "Js Inject UI")
 
 
 ## License
