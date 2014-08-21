@@ -55,7 +55,7 @@
       persistence.save = function (item, successCallback) {
         persistence.get({items: []}, function (results) {
 
-          if (item.enabled === "undefined") {
+          if (typeof item.enabled === "undefined") {
             item.enabled = true;
           }
 
@@ -68,7 +68,7 @@
 
           persistence.set(results, function () {
             console.debug('saved successfully');
-            if (successCallback !== "undefined") {
+            if (typeof successCallback !== "undefined") {
               successCallback();
             }
           });
@@ -80,7 +80,7 @@
           results.items = persistence.filterItemOutByGuid(results.items, guid);
           persistence.set(results, function () {
             console.debug('removed successfully');
-            if (successCallback !== "undefined") {
+            if (typeof successCallback !== "undefined") {
               successCallback();
             }
           });
