@@ -1,0 +1,20 @@
+{
+  "name": "jsinjector",
+  "homepage": "https://github.com/lnaia/jsinjector",
+  "authors": [
+    "lnaia"
+  ],
+  "description": "This chrome extension has the purpose of injecting Javascript into a target URL every time that page loads.",
+  "main": "",
+  "license": "GPL 3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-ace": "bower"
+  }
+}
