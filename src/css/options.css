@@ -3,6 +3,9 @@ body {
     padding-top: 30px;
     background-color: #fbfbfb;
 }
+.ace_editor {
+    height: 200px;
+}
 
 table.regex-list {
     -webkit-border-radius: 3px;

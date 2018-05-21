@@ -5,7 +5,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/options.css" rel="stylesheet">
-    <script src="js/angular.min.js"></script>
 </head>
 <body>
 
@@ -23,7 +22,7 @@
             </div>
 
             <div class="col-sm-2">
-                <button ng-click="showForm = true" type="button" class="btn btn-primary btn-block" id="add">Add</button>
+                <button ng-click="addNewItem()" type="button" class="btn btn-primary btn-block" ng-disabled="!!showForm" id="add">Add</button>
             </div>
 
             <div class="col-sm-1">
@@ -64,8 +63,16 @@
                        href="https://developer.chrome.com/extensions/storage#property-sync-QUOTA_BYTES_PER_ITEM">
                         Javascript code max 4,096 bytes
                     </a>
-                    <textarea ng-model="inject.code" placeholder="Javascript code"
-                              class="form-control" rows="8"></textarea>
+                    <div ng-if="showForm" ui-ace="{
+                        mode: 'javascript',
+                        useWrapMode : true,
+                        showGutter: true,
+                        advanced: {
+                            enableBasicAutocompletion: true,
+                            enableSnippets: true,
+                            enableLiveAutocompletion: false
+                        }
+                    }" ng-model="inject.code"></div>
                     <button ng-click="save(inject)" class="btn btn-info btn-xs">Save</button>
                     <button ng-click="showForm = false" class="btn btn-default btn-xs">Cancel</button>
                 </td>
@@ -94,7 +101,16 @@
             </tr>
             <tr ng-show="edit[item.guid]" ng-repeat-end>
                 <td class="jscode" colspan="3">
-                    <textarea ng-model="item.code" class="form-control" rows="8">{{ item.code }}</textarea>
+                    <div ng-if="edit[item.guid]" ui-ace="{
+                        mode: 'javascript',
+                        useWrapMode : true,
+                        showGutter: true,
+                        advanced: {
+                            enableBasicAutocompletion: true,
+                            enableSnippets: true,
+                            enableLiveAutocompletion: false
+                        }
+                    }" ng-model="item.code"></div>
                     <button ng-click=" save(item); edit[item.guid] = false" class="btn btn-info btn-xs">Save</button>
                     <button ng-click="edit[item.guid] = false" class="btn btn-default btn-xs">Cancel</button>
                 </td>
@@ -107,11 +123,17 @@
     </footer>
 </div>
 
-<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/app.angular.js"></script>
-<script src="js/options.controller.js"></script>
-<script src="js/help.controller.js"></script>
+<script defer type="application/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script defer type="application/javascript" src="js/bootstrap.min.js"></script>
+<script defer type="application/javascript" src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+<script defer type="application/javascript" src="bower_components/ace-builds/src-min-noconflict/ext-language_tools.js "></script>
+<script defer type="application/javascript" src="bower_components/ace-builds/src-min-noconflict/mode-javascript.js"></script>
+<script defer type="application/javascript" src="js/angular.min.js"></script>
+<script defer type="application/javascript" src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script defer type="application/javascript" src="bower_components/angular-ui-ace/ui-ace.min.js"></script>
+
+<script defer type="application/javascript" src="js/app.angular.js"></script>
+<script defer type="application/javascript" src="js/options.controller.js"></script>
+<script defer type="application/javascript" src="js/help.controller.js"></script>
 </body>
 </html>

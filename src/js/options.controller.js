@@ -22,6 +22,7 @@
         });
       }
 
+      $scope.addNewItem = addNewItem;
       $scope.showForm = false;
       $scope.edit = {};
 
@@ -29,6 +30,12 @@
         $scope.manifest = data;
       });
 
+      function addNewItem(){
+        if(!$scope.showForm) {
+          $scope.inject = {code: '', url: 'https://example.com/*'};
+          $scope.showForm = true;
+        }
+      }
       $scope.save = function (item) {
 
         if (item.$$hashKey) {
@@ -70,7 +77,7 @@
 
       listItems();
       if ($location.path() === '/add') {
-        $scope.showForm = true;
+        addNewItem();
       }
 
     }
